@@ -1,9 +1,13 @@
 import "./styles/global.css";
 
+import Header from "./components/Header";
+import Step0 from "./components/Step0";
+
 function App() {
   return (
     <div className="app">
-      AI相談ナビ
+      <Header />
+      <Step0 />
     </div>
   );
 }
