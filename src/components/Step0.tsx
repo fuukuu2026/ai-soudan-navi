@@ -1,17 +1,24 @@
 import { AI_OPTIONS } from "../data/ai";
 
-function Step0() {
+export default function Step0() {
   return (
-    <section>
-      <h2>STEP0 AIを選択</h2>
+    <section className="card">
+      <h2>初期設定</h2>
 
-      {AI_OPTIONS.map((ai) => (
-        <button key={ai.id}>
-          {ai.name}
-        </button>
-      ))}
+      <p className="description">
+        普段利用しているAIを選択してください。
+        <br />
+        この設定は保存されるため、通常は毎回選ぶ必要はありません。
+      </p>
+
+      <div className="ai-grid">
+        {AI_OPTIONS.map((ai) => (
+          <button key={ai.id} className="ai-card">
+            <div>{ai.icon}</div>
+            <div>{ai.name}</div>
+          </button>
+        ))}
+      </div>
     </section>
   );
 }
-
-export default Step0;
