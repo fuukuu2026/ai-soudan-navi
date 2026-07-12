@@ -1,16 +1,41 @@
-export default function Step3() {
+type Props = {
+  value: string;
+  onChange: (value: string) => void;
+};
+
+export default function Step3({
+  value,
+  onChange,
+}: Props) {
   return (
     <section className="card">
-      <h2>③ 一番困っていることは何ですか？</h2>
-
-      <p className="description">
-        一番困っていることを入力してください。
+      <p className="card-eyebrow">
+        STEP 3
       </p>
 
-      <textarea
-        rows={5}
-        placeholder={"例）\n何から始めればいいか分かりません"}
-      />
+      <h2 className="card-title">
+        ③ AIに何を手伝ってほしいですか？
+      </h2>
+
+      <div className="qa-block">
+        <p className="description">
+          してほしいことを、そのまま入力してください。
+        </p>
+
+        <p className="inline-example">
+          例）「方法を教えてほしい」「候補を3つ提案してほしい」など
+        </p>
+
+        <textarea
+          className="qa-input"
+          rows={5}
+          value={value}
+          onChange={(e) =>
+            onChange(e.target.value)
+          }
+          placeholder="自由に入力してください"
+        />
+      </div>
     </section>
   );
 }

@@ -1,5 +1,16 @@
-function CopyButton() {
-  return <button>AIへコピー</button>;
+type Props = {
+  onClick: () => void;
+};
+
+function CopyButton({ onClick }: Props) {
+  return (
+    <button
+      className="copy-button"
+      onClick={onClick}
+    >
+      AIへコピー
+    </button>
+  );
 }
 
 export default CopyButton;

@@ -1,22 +1,46 @@
+import { useEffect, useState } from "react";
 import { AI_OPTIONS } from "../data/ai";
 
+const STORAGE_KEY = "selected-ai";
+
 export default function Step0() {
+  const [selectedAI, setSelectedAI] = useState(() => {
+    return localStorage.getItem(STORAGE_KEY) ?? "chatgpt";
+  });
+
+  useEffect(() => {
+    localStorage.setItem(STORAGE_KEY, selectedAI);
+  }, [selectedAI]);
+
   return (
     <section className="card">
-      <h2>初期設定</h2>
-
-      <p className="description">
-        普段利用しているAIを選択してください。
-        <br />
-        この設定は保存されるため、通常は毎回選ぶ必要はありません。
+      <p className="card-eyebrow">
+        STEP 0
       </p>
+
+      <h2 className="card-title">
+        利用するAI
+      </h2>
 
       <div className="ai-grid">
         {AI_OPTIONS.map((ai) => (
-          <button key={ai.id} className="ai-card">
-            <div>{ai.icon}</div>
-            <div>{ai.name}</div>
-          </button>
+          <label
+            key={ai.id}
+            className="ai-card"
+          >
+            <input
+              type="radio"
+              name="ai"
+              value={ai.id}
+              checked={selectedAI === ai.id}
+              onChange={() =>
+                setSelectedAI(ai.id)
+              }
+            />
+
+            <span>{ai.label}</span>
+            <span className="ai-description">{ai.description}</span>
+          </label>
         ))}
       </div>
     </section>

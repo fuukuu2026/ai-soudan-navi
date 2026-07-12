@@ -3,30 +3,21 @@ type Props = {
   onChange: (value: string) => void;
 };
 
-export default function Step1({
+export default function SupplementSection({
   value,
   onChange,
 }: Props) {
   return (
-    <section className="card">
-      <p className="card-eyebrow">
-        STEP 1
-      </p>
-
+    <section className="card card-optional">
       <h2 className="card-title">
-        ① 何について相談しますか？
+        追加で伝えたいこと
       </h2>
 
       <div className="qa-block">
-
         <p className="description">
-          相談したいテーマを入力してください。
+          不安・希望・条件など、
           <br />
-          一言で大丈夫です。
-        </p>
-
-        <p className="inline-example">
-          例）「Excel作業の効率化」「パソコン選び」「資格の勉強」など
+          AIに伝えておきたいことがあれば入力してください。
         </p>
 
         <textarea
@@ -38,7 +29,6 @@ export default function Step1({
           }
           placeholder="自由に入力してください"
         />
-
       </div>
     </section>
   );

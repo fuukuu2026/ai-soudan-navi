@@ -1,36 +1,33 @@
-<<<<<<< HEAD
-# React + TypeScript + Vite
+# AI相談ナビ
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+AI初心者でも迷わず「AIへの相談文」を作れる、React + TypeScript + Vite製のWebアプリです。
+STEP1〜3に沿って入力するだけで、ChatGPT・Claude・Gemini・Copilotなど利用中のAIに合わせた相談文を自動生成します。
 
-Currently, two official plugins are available:
+## 公開URL
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+https://fuukuu2026.github.io/ai-soudan-navi/
 
-## React Compiler
+`main` ブランチにpushすると、GitHub Actionsが自動でビルド・デプロイします。
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## 開発環境
 
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
-=======
-# ai-soudan-navi
->>>>>>> 23c0b6c100d65e7962346307581ec8313dd79449
+`http://localhost:5173/` で開発サーバーが起動します（公開URLとは独立した開発用環境です）。
+
+## ビルド
+
+```bash
+npm run build
+```
+
+`dist/` に本番用ビルドが出力されます（GitHub Pages向けに `base: '/ai-soudan-navi/'` が自動で設定されます）。
+
+## Lint
+
+```bash
+npm run lint
+```
