@@ -24,8 +24,10 @@ export default function SettingsDialog({
         onClick={(e) => e.stopPropagation()}
       >
         <h2 className="card-title">
-          利用するAI
+          設定
         </h2>
+
+        <h3>利用するAI</h3>
 
         <div className="ai-grid">
           {AI_OPTIONS.map((ai) => (
@@ -46,6 +48,38 @@ export default function SettingsDialog({
             </label>
           ))}
         </div>
+
+        <hr />
+
+        <h3>テーマ</h3>
+
+        <label>
+          <input
+            type="radio"
+            name="theme"
+            checked
+            readOnly
+          />
+          ライト（現在）
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="theme"
+            disabled
+          />
+          ダーク（Version1.1で対応予定）
+        </label>
+
+        <label>
+          <input
+            type="radio"
+            name="theme"
+            disabled
+          />
+          システム設定に合わせる（Version1.1で対応予定）
+        </label>
 
         <button
           className="primary-button"

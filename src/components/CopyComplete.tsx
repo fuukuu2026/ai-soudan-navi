@@ -15,15 +15,42 @@ export default function CopyComplete() {
             AIへ貼り付ける文章をコピーしました
           </h2>
 
-          <p className="description">
-            ご利用のAIへ貼り付けてください。
-            <br />
-            📎 参考資料がある場合は、
-            <br />
-            AIのチャット欄へ添付してください。
-            <br />
-            より正確な回答につながります。
-          </p>
+          <div
+            style={{
+              marginTop: "12px",
+              marginLeft: "16px",
+              marginBottom: "16px",
+              fontWeight: 600,
+            }}
+          >
+            📋 ご利用のAIへ貼り付けてください。
+          </div>
+
+          <div
+            style={{
+              marginLeft: "16px",
+              padding: "12px 16px",
+              background: "#FFF8E8",
+              border: "1px solid #F2D58A",
+              borderRadius: "10px",
+              maxWidth: "340px",
+            }}
+          >
+            <div
+              style={{
+                fontWeight: "bold",
+                marginBottom: "8px",
+              }}
+            >
+              📎 参考資料がある場合
+            </div>
+
+            <div className="description">
+              AIのチャット欄へ添付してください。
+              <br />
+              より正確な回答につながります。
+            </div>
+          </div>
         </div>
       </div>
     </section>
