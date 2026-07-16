@@ -26,20 +26,23 @@ export default function Step0() {
         {AI_OPTIONS.map((ai) => (
           <label
             key={ai.id}
-            className="ai-card"
+            className={`ai-card ${
+              selectedAI === ai.id ? "ai-card-selected" : ""
+            }`}
           >
             <input
               type="radio"
               name="ai"
               value={ai.id}
               checked={selectedAI === ai.id}
-              onChange={() =>
-                setSelectedAI(ai.id)
-              }
+              onChange={() => setSelectedAI(ai.id)}
             />
 
             <span>{ai.label}</span>
-            <span className="ai-description">{ai.description}</span>
+
+            <span className="ai-description">
+              {ai.description}
+            </span>
           </label>
         ))}
       </div>

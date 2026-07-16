@@ -1,49 +1,20 @@
 export default function CopyComplete() {
   return (
     <section className="card">
-      <div
-        style={{
-          display: "flex",
-          alignItems: "flex-start",
-          gap: "12px",
-        }}
-      >
-        <div style={{ fontSize: "28px" }}>✅</div>
+      <div className="copy-complete">
+        <div className="copy-icon">✅</div>
 
         <div>
           <h2 className="card-title">
             AIへ貼り付ける文章をコピーしました
           </h2>
 
-          <div
-            style={{
-              marginTop: "12px",
-              marginLeft: "16px",
-              marginBottom: "16px",
-              fontWeight: 600,
-              color: "var(--color-text)",
-            }}
-          >
+          <div className="copy-next-step">
             📋 ご利用のAIへ貼り付けてください。
           </div>
 
-          <div
-            style={{
-              marginLeft: "16px",
-              padding: "12px 16px",
-              background: "var(--color-info-bg)",
-              border: "1px solid var(--color-info-border)",
-              borderRadius: "10px",
-              maxWidth: "340px",
-            }}
-          >
-            <div
-              style={{
-                fontWeight: "bold",
-                marginBottom: "8px",
-                color: "var(--color-text)",
-              }}
-            >
+          <div className="copy-info-box">
+            <div className="copy-info-title">
               📎 参考資料がある場合
             </div>
 
