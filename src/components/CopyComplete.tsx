@@ -21,6 +21,7 @@ export default function CopyComplete() {
               marginLeft: "16px",
               marginBottom: "16px",
               fontWeight: 600,
+              color: "var(--color-text)",
             }}
           >
             📋 ご利用のAIへ貼り付けてください。
@@ -30,8 +31,8 @@ export default function CopyComplete() {
             style={{
               marginLeft: "16px",
               padding: "12px 16px",
-              background: "#FFF8E8",
-              border: "1px solid #F2D58A",
+              background: "var(--color-info-bg)",
+              border: "1px solid var(--color-info-border)",
               borderRadius: "10px",
               maxWidth: "340px",
             }}
@@ -40,6 +41,7 @@ export default function CopyComplete() {
               style={{
                 fontWeight: "bold",
                 marginBottom: "8px",
+                color: "var(--color-text)",
               }}
             >
               📎 参考資料がある場合

@@ -22,7 +22,10 @@
   --color-overlay: rgba(0, 0, 0, 0.6);
   --color-icon: #a0a0a0;
   --color-hover: rgba(255, 255, 255, 0.08);
+  --color-info-bg: #3a3424;
+  --color-info-border: #8d7440;
 }
+
 
 body.theme-light {
   --color-bg: #f5f3ec;
@@ -42,6 +45,8 @@ body.theme-light {
   --color-overlay: rgba(0, 0, 0, 0.4);
   --color-icon: #6b6b5c;
   --color-hover: rgba(0, 0, 0, 0.06);
+  --color-info-bg: #FFF8E8;
+--color-info-border: #F2D58A;
 }
 
 body {
