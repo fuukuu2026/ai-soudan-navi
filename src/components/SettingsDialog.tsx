@@ -51,35 +51,7 @@ export default function SettingsDialog({
 
         <hr />
 
-        <h3>テーマ</h3>
-
-        <label>
-          <input
-            type="radio"
-            name="theme"
-            checked
-            readOnly
-          />
-          ライト（現在）
-        </label>
-
-        <label>
-          <input
-            type="radio"
-            name="theme"
-            disabled
-          />
-          ダーク（Version1.1で対応予定）
-        </label>
-
-        <label>
-          <input
-            type="radio"
-            name="theme"
-            disabled
-          />
-          システム設定に合わせる（Version1.1で対応予定）
-        </label>
+  
 
         <button
           className="primary-button"
