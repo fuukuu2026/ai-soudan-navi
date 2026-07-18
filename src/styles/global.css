@@ -460,12 +460,11 @@ input {
   margin-top: 16px;
   padding: 14px 20px;
 
-  border: 1px solid var(--color-card-border);
+ border: none;
   border-radius: 14px;
 
-  background: transparent;
-  color: var(--color-text);
-
+ background: var(--color-primary-bg);
+ color: var(--color-primary-text);
   font-size: 15px;
   font-weight: 700;
 
@@ -475,7 +474,7 @@ input {
 }
 
 .copy-button:hover {
-  border-color: var(--color-focus);
+  opacity: .9;
 }
 /* ==========================================
    Settings Dialog
@@ -571,10 +570,10 @@ input {
 ========================================== */
 
 .new-consultation-area {
-  display: flex;
-  justify-content: center;
-  margin-top: 40px;
-  padding: 0 16px;
+    display: flex;
+    justify-content: center;
+    margin-top: 24px;
+    padding: 0 16px;
 }
 
 .new-consultation-button {
