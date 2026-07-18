@@ -574,11 +574,12 @@ input {
   display: flex;
   justify-content: center;
   margin-top: 40px;
+  padding: 0 16px;
 }
 
 .new-consultation-button {
- width: auto;
-min-width: 420px;
+width: 100%;
+max-width: 420px;
   padding: 16px 20px;
 
   background: var(--color-input-bg);
