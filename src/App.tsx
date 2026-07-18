@@ -83,7 +83,12 @@ function App() {
     useState("");
 
   const [copied, setCopied] = useState(false);
-
+const hasConsultationData =
+  consultation.topic.trim() !== "" ||
+  consultation.situation.trim() !== "" ||
+  consultation.trouble.trim() !== "" ||
+  supplement.trim() !== "" ||
+  hasReference;
   useEffect(() => {
     localStorage.setItem(
       CONSULTATION_STORAGE_KEY,
@@ -123,6 +128,8 @@ function App() {
   };
 
   const handleCopy = async () => {
+   
+
     try {
       await navigator.clipboard.writeText(generatedPrompt);
       setCopied(true);
@@ -130,14 +137,35 @@ function App() {
       // クリップボードへのアクセスが許可されていない場合は何もしない
     }
   };
+const handleNewConsultation = () => {
+  const ok = window.confirm(
+    "現在入力中の相談内容を削除して、新しい相談を始めます。\n\nAI設定・回答モード・テーマは保持されます。"
+  );
 
+  if (!ok) return;
+
+  setConsultation({
+    topic: "",
+    situation: "",
+    trouble: "",
+  });
+
+  setSupplement("");
+  setHasReference(false);
+
+  setGeneratedPrompt("");
+  setCopied(false);
+
+  localStorage.removeItem(CONSULTATION_STORAGE_KEY);
+};
   if (!setupComplete) {
     return (
       <>
-        <Header
-          selectedAI={selectedAI}
-          onToggleTheme={handleToggleTheme}
-        />
+       <Header
+  selectedAI={selectedAI}
+  theme={theme}
+  onToggleTheme={handleToggleTheme}
+/>
 
         <InitialSetup
           onComplete={() => {
@@ -159,11 +187,12 @@ function App() {
 
   return (
     <div className="app">
-      <Header
-        selectedAI={selectedAI}
-        onOpenSettings={() => setSettingsOpen(true)}
-        onToggleTheme={handleToggleTheme}
-      />
+     <Header
+  selectedAI={selectedAI}
+  theme={theme}
+  onOpenSettings={() => setSettingsOpen(true)}
+  onToggleTheme={handleToggleTheme}
+/>
 
       <SettingsDialog
         open={settingsOpen}
@@ -249,6 +278,16 @@ function App() {
         )}
 
         {copied && <CopyComplete />}
+        {hasConsultationData && (
+<div className="new-consultation-area">
+  <button
+    className="new-consultation-button"
+    onClick={handleNewConsultation}
+  >
+    ✨ 新しい相談を始める
+  </button>
+</div>
+)}
       </main>
     </div>
   );

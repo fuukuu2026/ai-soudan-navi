@@ -562,3 +562,49 @@ input {
     grid-template-columns: 1fr;
   }
 }
+/* ==========================================
+   New Consultation
+========================================== */
+
+/* ==========================================
+   New Consultation
+========================================== */
+
+.new-consultation-area {
+  display: flex;
+  justify-content: center;
+  margin-top: 40px;
+}
+
+.new-consultation-button {
+ width: auto;
+min-width: 420px;
+  padding: 16px 20px;
+
+  background: var(--color-input-bg);
+  color: var(--color-text);
+
+  border: 2px solid var(--color-focus);
+  border-radius: 14px;
+
+  font-size: 17px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background-color .2s,
+    border-color .2s,
+    transform .15s;
+}
+
+.new-consultation-button:hover {
+  background: var(--color-hover);
+  border-color: var(--color-primary-bg);
+  transform: translateY(-1px);
+}
+
+.new-consultation-button:active {
+  transform: translateY(0);
+}
+

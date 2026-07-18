@@ -2,12 +2,14 @@ import { AI_OPTIONS } from "../data/ai";
 
 type HeaderProps = {
   selectedAI: string;
+  theme: string;
   onOpenSettings?: () => void;
   onToggleTheme?: () => void;
 };
 
 export default function Header({
   selectedAI,
+  theme,
   onOpenSettings,
   onToggleTheme,
 }: HeaderProps) {
@@ -33,13 +35,13 @@ export default function Header({
           {ai.label} ▼
         </button>
 
-        <button
-          className="icon-button"
-          aria-label="ダークモード"
-          onClick={onToggleTheme}
-        >
-          🌙
-        </button>
+      <button
+  className="icon-button"
+  aria-label="テーマ切り替え"
+  onClick={onToggleTheme}
+>
+  {theme === "dark" ? "☀️" : "🌙"}
+</button>
 
         <button
           className="icon-button"
