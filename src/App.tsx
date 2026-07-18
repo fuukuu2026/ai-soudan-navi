@@ -106,6 +106,19 @@ const hasConsultationData =
   }, [theme]);
 
   const handleGeneratePrompt = () => {
+    
+if (
+  consultation.topic.trim() === "" &&
+  consultation.situation.trim() === "" &&
+  consultation.trouble.trim() === "" &&
+  supplement.trim() === "" &&
+  !hasReference
+) {
+  window.alert(
+    "相談内容が入力されていません。\n\nSTEP1～STEP3のいずれかを入力してから、AIへ送る相談文を作成してください。"
+  );
+  return;
+}    
     const result = generatePrompt({
       consultation,
       supplement,
