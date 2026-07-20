@@ -59,6 +59,8 @@ export default function SettingsDialog({
         >
           閉じる
         </button>
+
+        <p className="settings-version">Version 1.3.0</p>
       </section>
     </div>
   );
