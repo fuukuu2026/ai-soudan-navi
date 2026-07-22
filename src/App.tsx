@@ -10,6 +10,7 @@ import ReferenceSection from "./components/ReferenceSection";
 import AnswerMode from "./components/AnswerMode";
 import AdditionalSection from "./components/AdditionalSection";
 import SettingsDialog from "./components/SettingsDialog";
+import ConfirmDialog from "./components/ConfirmDialog";
 import CopyButton from "./components/CopyButton";
 import CopyComplete from "./components/CopyComplete";
 
@@ -20,6 +21,25 @@ import "./styles/global.css";
 const CONSULTATION_STORAGE_KEY = "consultation";
 const ANSWER_MODE_STORAGE_KEY = "answerMode";
 const THEME_STORAGE_KEY = "theme";
+
+// window.alert / window.confirm の代わりに表示するConfirmDialogの状態。
+// cancelLabelを渡さない場合は「通知」（OKのみ）、渡す場合は「確認」（OK/キャンセル）になる。
+type ConfirmDialogState = {
+  open: boolean;
+  title: string;
+  message: string;
+  confirmLabel?: string;
+  cancelLabel?: string;
+  onConfirm: () => void;
+  onCancel?: () => void;
+};
+
+const INITIAL_CONFIRM_DIALOG_STATE: ConfirmDialogState = {
+  open: false,
+  title: "",
+  message: "",
+  onConfirm: () => {},
+};
 
 function App() {
   const [selectedAI, setSelectedAI] = useState(() => {
@@ -83,6 +103,15 @@ function App() {
     useState("");
 
   const [copied, setCopied] = useState(false);
+
+  const [confirmDialog, setConfirmDialog] = useState<ConfirmDialogState>(
+    INITIAL_CONFIRM_DIALOG_STATE
+  );
+
+  const closeConfirmDialog = () => {
+    setConfirmDialog((prev) => ({ ...prev, open: false }));
+  };
+
 const hasConsultationData =
   consultation.topic.trim() !== "" ||
   consultation.situation.trim() !== "" ||
@@ -106,7 +135,7 @@ const hasConsultationData =
   }, [theme]);
 
   const handleGeneratePrompt = () => {
-    
+
 if (
   consultation.topic.trim() === "" &&
   consultation.situation.trim() === "" &&
@@ -114,11 +143,16 @@ if (
   supplement.trim() === "" &&
   !hasReference
 ) {
-  window.alert(
-    "相談内容が入力されていません。\n\nSTEP1～STEP3のいずれかを入力してから、AIへ送る相談文を作成してください。"
-  );
+  setConfirmDialog({
+    open: true,
+    title: "相談内容が入力されていません",
+    message:
+      "STEP1～STEP3のいずれかを入力してから、AIへ送る相談文を作成してください。",
+    confirmLabel: "OK",
+    onConfirm: closeConfirmDialog,
+  });
   return;
-}    
+}
     const result = generatePrompt({
       consultation,
       supplement,
@@ -151,25 +185,32 @@ if (
     }
   };
 const handleNewConsultation = () => {
-  const ok = window.confirm(
-    "現在入力中の相談内容を削除して、新しい相談を始めます。\n\nAI設定・回答モード・テーマは保持されます。"
-  );
+  setConfirmDialog({
+    open: true,
+    title: "新しい相談を始める",
+    message:
+      "現在入力中の相談内容を削除して、新しい相談を始めます。\n\nAI設定・回答モード・テーマは保持されます。",
+    confirmLabel: "OK",
+    cancelLabel: "キャンセル",
+    onConfirm: () => {
+      setConsultation({
+        topic: "",
+        situation: "",
+        trouble: "",
+      });
 
-  if (!ok) return;
+      setSupplement("");
+      setHasReference(false);
 
-  setConsultation({
-    topic: "",
-    situation: "",
-    trouble: "",
+      setGeneratedPrompt("");
+      setCopied(false);
+
+      localStorage.removeItem(CONSULTATION_STORAGE_KEY);
+
+      closeConfirmDialog();
+    },
+    onCancel: closeConfirmDialog,
   });
-
-  setSupplement("");
-  setHasReference(false);
-
-  setGeneratedPrompt("");
-  setCopied(false);
-
-  localStorage.removeItem(CONSULTATION_STORAGE_KEY);
 };
   if (!setupComplete) {
     return (
@@ -212,6 +253,16 @@ const handleNewConsultation = () => {
         selectedAI={selectedAI}
         onChange={handleSelectAI}
         onClose={() => setSettingsOpen(false)}
+      />
+
+      <ConfirmDialog
+        open={confirmDialog.open}
+        title={confirmDialog.title}
+        message={confirmDialog.message}
+        confirmLabel={confirmDialog.confirmLabel}
+        cancelLabel={confirmDialog.cancelLabel}
+        onConfirm={confirmDialog.onConfirm}
+        onCancel={confirmDialog.onCancel}
       />
 
       <main className="main-container">

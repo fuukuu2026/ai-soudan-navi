@@ -1,0 +1,120 @@
+/* ==========================================
+   ConfirmDialog
+   通知（alert代替）・確認（confirm代替）共通モーダル。
+   既存の SettingsDialog（.settings-overlay / .settings-dialog）と
+   同じ雰囲気に合わせつつ、独立したCSSファイルとして定義する。
+   色は global.css で定義済みのCSS変数（テーマ変数）のみを利用し、
+   このファイルでの新規変数定義は行わない。
+========================================== */
+
+.confirm-dialog-overlay {
+  position: fixed;
+  inset: 0;
+
+  background: var(--color-overlay);
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: 20px;
+
+  z-index: 100;
+}
+
+.confirm-dialog {
+  width: min(440px, 100%);
+}
+
+.confirm-dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  margin-bottom: 14px;
+}
+
+.confirm-dialog-icon {
+  width: 30px;
+  height: 30px;
+
+  flex-shrink: 0;
+
+  object-fit: contain;
+}
+
+/* .card-title の margin-bottom はヘッダー側で管理するため打ち消す */
+.confirm-dialog-title {
+  margin: 0;
+}
+
+.confirm-dialog-message {
+  color: var(--color-text);
+
+  font-size: 15px;
+  line-height: 1.8;
+
+  /* alert/confirm時の改行（\n）をそのまま活かす */
+  white-space: pre-line;
+}
+
+.confirm-dialog-actions {
+  display: flex;
+  gap: 12px;
+
+  margin-top: 24px;
+}
+
+/* primary-button は元々 width:100% / margin-top:24px を持つため、
+   ボタンを横並びにするこの文脈では打ち消して使う */
+.confirm-dialog-actions .confirm-dialog-confirm-button {
+  width: auto;
+  flex: 1;
+  margin-top: 0;
+}
+
+.confirm-dialog-cancel-button {
+  flex: 1;
+
+  padding: 14px 20px;
+
+  background: var(--color-input-bg);
+  color: var(--color-text);
+
+  border: 1px solid var(--color-card-border);
+  border-radius: 14px;
+
+  font-size: 16px;
+  font-weight: 700;
+
+  cursor: pointer;
+
+  transition:
+    background-color .2s,
+    border-color .2s;
+}
+
+.confirm-dialog-cancel-button:hover {
+  background: var(--color-hover);
+  border-color: var(--color-focus);
+}
+
+/* ==========================================
+   Responsive (smartphone)
+   global.css の @media (max-width: 420px) と同じブレークポイントに合わせる
+========================================== */
+
+@media (max-width: 420px) {
+  .confirm-dialog {
+    width: 100%;
+  }
+
+  .confirm-dialog-actions {
+    flex-direction: column;
+  }
+
+  .confirm-dialog-actions .confirm-dialog-confirm-button,
+  .confirm-dialog-cancel-button {
+    width: 100%;
+  }
+}
